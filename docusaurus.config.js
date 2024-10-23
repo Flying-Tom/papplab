@@ -15,7 +15,7 @@ const config = {
   organizationName: 'Flying-Tom',
   projectName: 'papplab',
   deploymentBranch: 'gh-pages',
-  trailingSlash: false,
+  trailingSlash: true,
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
