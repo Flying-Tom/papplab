@@ -9,8 +9,8 @@ import rehypeKatex from 'rehype-katex';
 
 const config = {
   title: 'Papp Lab',
-  url: 'https://papplab.github.io',
-  baseUrl: '/',
+  url: 'https://flying-tom.github.io',
+  baseUrl: '/papplab/',
   organizationName: 'Flying-Tom',
   projectName: 'papplab',
   deploymentBranch: 'gh-pages',
