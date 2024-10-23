@@ -40,10 +40,10 @@ function MyContent() {
 
       <hr /><p className={styles.region_title}>实验内容</p>
       <ul class="index-list" style={{ marginBottom: 100 }}>
-        <li><a href="/docs/lab1/">实验 1：Android 和 APK</a></li>
-        <li><a href="/docs/lab2/">实验 2：静态分析</a></li>
-        <li><a href="/docs/lab3/">实验 3：动态分析</a></li>
-        <li><a href="/docs/lab4/">实验 4：位置信息调查</a></li>
+        <li><a href="docs/lab1/">实验 1：Android 和 APK</a></li>
+        <li><a href="docs/lab2/">实验 2：静态分析</a></li>
+        <li><a href="docs/lab3/">实验 3：动态分析</a></li>
+        <li><a href="docs/lab4/">实验 4：位置信息调查</a></li>
       </ul>
     </div>
   );
