@@ -20,7 +20,7 @@ Android 应用程序包(`Android application package`)，是 Android 操作系�
 - `classes.dex`: classes 文件通过 `DEX` 编译后的文件格式，用于在虚拟机上运行的主要代码部分
 - `resources.arsc`: 资源配置文件
 
-![Android APK Struct](https://s1.ax1x.com/2023/01/31/pS0WKBV.png)
+![Android APK Struct](./assets/apk-struct.png)
 
 我们来分别介绍一下在这种常见格式下，不同结构中包含的内容
 
@@ -28,7 +28,8 @@ Android 应用程序包(`Android application package`)，是 Android 操作系�
 
 `META-INF`目录里保存应用的签名信息，签名信息可以验证 APK 文件的完整性; Android SDK 在打包 APK 时会计算 APK 包中所有文件的完整性，并且把这些完整性保存到 `META-INF` 文件夹下，应用程序在安装的时候首先会根据 `META-INF` 目录校验 APK 的完整性，这样就可以保证 APK 中的每一个文件都不能被篡改, 以此来确保 APK 应用程序不被恶意修改或者病毒感染，有利于确保 Android 应用的完整性和系统的安全性。
 
-META-INF 目录下包含的文件有 `CERT.RSA`，`CERT.DSA`，`CERT.SF` 和 `MANIFEST.MF`，其中 
+META-INF 目录下包含的文件有 `CERT.RSA`，`CERT.DSA`，`CERT.SF` 和 `MANIFEST.MF`，其中
+
 - CERT.RSA 是开发者利用私钥对 APK 进行签名的签名文件，
 - CERT.SF，MANIFEST.MF 记录了文件中文件的 SHA-1 哈希值
 
@@ -42,7 +43,6 @@ META-INF 目录下包含的文件有 `CERT.RSA`，`CERT.DSA`，`CERT.SF` 和 `MA
 - `x86` / `x86_64` : x86 平台架构
 - `mips` : MIPS 架构
 - $\cdots$
-
 
 :::caution 平台支持
 
@@ -81,9 +81,11 @@ META-INF 目录下包含的文件有 `CERT.RSA`，`CERT.DSA`，`CERT.SF` 和 `MA
 - 访问敏感用户数据（如联系人和短信）或某些系统功能（如相机和互联网访问）需要在`AndroidManifest.xml`进行声明，否则无法调用API；同时也可以使用权限保护自己的组件
 - 清单文件也可用于声明应用所需的硬件或软件功能类型，以及应用兼容的设备类型供应用商店或其他的使用途径， 如需要的硬件和软件功能（如需要罗盘或陀螺仪），需要的SDK（最低兼容的API版本）
 
-程序打包时，会把 `AndroidManifest.xml` 进行简单的编译成为二进制文件, 便于 Android 系统识别，编译之后的格式是 `AXML` 格式，这也是我们逆向出的`AndroidMainifest.xml`格式，如下图所示：
+程序打包时，会把 `AndroidManifest.xml` 进行简单的编译成为二进制文件, 便于 Android 系统识别，编译之后的格式是 `AXML` 格式，这也是我们逆向出的`AndroidManifest.xml`格式，如下图所示：
 
-<img class="aligncenter" src='https://s1.ax1x.com/2023/02/08/pS2zmtI.png' width="400" />
+<!-- <img class="aligncenter" src='./assets/manifest.png' width="400" /> -->
+
+![Android Manifest](./assets/manifest.png)
 
 ### classes.dex
 
@@ -104,7 +106,7 @@ META-INF 目录下包含的文件有 `CERT.RSA`，`CERT.DSA`，`CERT.SF` 和 `MA
 
 打包流程如[下图](http://androidsrc.net/android-app-build-overview/)所示
 
-![](https://s1.ax1x.com/2023/02/02/pSrGwwt.png)
+![APK Build Process](./assets/apk-build.png)
 
 #### 1. 打包资源文件，生成 R.java 文件
 
@@ -206,9 +208,7 @@ Android 在系统设计上把每个应用当做 Linux 系统上的一个用户�
 4. 为 apk 执行 `dexopt` 优化。
 5. 安装完成发送`ACTION_PACKAGE_ADDED`广播, `launcher` 接收到这个广播之后就可以在桌面上添加应用图标
 
-
 > 更为具体的内容可以参考这篇文章[APK安装流程详解](https://www.jianshu.com/p/4f16421d5c7f)
-
 
 <!-- ## 应用运行 -->
 

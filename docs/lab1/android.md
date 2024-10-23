@@ -10,9 +10,11 @@ Android 是一个基于 Linux 核心与其他开源软件的开放原始码的�
 
 [Andorid 系统架构](https://developer.android.com/guide/platform)从上到下分别有应用层、应用框架层、系统运行时库层、硬件抽象层、Linux 内核层
 
-<img src='https://s1.ax1x.com/2023/01/31/pS0WUnx.png' width="600" />
+<!-- <img src='./assets/android-architecture.jpeg' width="600" /> -->
 
-其每层的大致职能如下: 
+![Android Architecture](./assets/android-architecture.jpeg)
+
+其每层的大致职能如下:
 
 - **应用层**：包括系统应用比如闹钟、日历等这些在内的以及非系统级别的应用都属于应用层, 负责用户交互
 - **应用框架层**：提供应用程序的 API，比如一些 ActivityManager 管理应用生命周期、locationManager 地理位置服务、还有就是 NotificationManager 消息通知管理等等
@@ -28,8 +30,6 @@ Android 5.0 系统之前使用的是`DVM(Dalvik 虚拟机)`，相对于 JVM 来�
 - DVM 拥有共享机制， 即不同应用运行时可以共享相同的类，拥有更高的效率
 - 相较于 JVM，DVM 基于寄存器架构，提高对访存问速度；整合.class 文件，减少 I/O 操作
 
-
-
 `ART(Android Runtime)`是 Android 4.4 发布来替换DVM的, 在 Android 5.0 时默认采用 ART，至此 DVM 正式退出历史舞台。
 
 DVM 中的应用每次运行时，字节码都需要通过即时编译器(`JIT, just in time`)转换为机器码，这会使得应用的运行效率降低。而在 ART 中，系统在安装应用时会进行一次预编译(`AOT, ahead of time`) ,将字节码预先编译成机器码并存储在本地，这样应用每次运行时就不需要执行编译了，运行效率也大大提升。
@@ -42,7 +42,7 @@ DVM 中的应用每次运行时，字节码都需要通过即时编译器(`JIT, 
 
 :::info HAL 层
 
-如下是Android官方关于HAL的[描述](https://source.android.com/docs/core/architecture): 
+如下是Android官方关于HAL的[描述](https://source.android.com/docs/core/architecture):
 
 > HAL 是一个抽象层，具有供硬件供应商实现的标准接口。 HAL 允许 Android 不了解较低级别的驱动程序实现。使用 HAL 可以让您在不影响或修改更高级别系统的情况下实现功能。
 
@@ -60,7 +60,9 @@ HAL简单来说就是对Linux内核驱动程序的封装，向上提供接口，
 
 以下图为例，我们自下而上的分层了解 Android 的启动流程
 
-<img src='https://s1.ax1x.com/2023/02/01/pSBKOaQ.png' width="600" />
+<!-- <img src='./assets/boot-process.png' width="600" /> -->
+
+![Android Boot Process](./assets/boot-process.png)
 
 ### Loader 层
 
@@ -103,7 +105,9 @@ HAL简单来说就是对Linux内核驱动程序的封装，向上提供接口，
 
 `JNI`（Java Native Interface）是 Java SDK 1.1 时正式推出的，目的是为不同 JVM 实现间提供一个标准**双向**接口，从而使 Java 应用可以使用本地二进制共享库，扩充了原有 JVM 的能力，同时 Java 程序仍然无需再次编译就可以运行在其他平台上，即保持了平台独立性又能使用平台相关的本地共享库提升性能。在 Java 开发中的位置如下图所示。JNI 作为连接平台独立的 Java 层(以下简称 Java 层)与与平台相关的本地环境(以下简称 Native 层)之间的桥梁。Android 内部就大量的使用了 JNI 技术，尤其是在 Libraries 层和 Framework 层。
 
-<img class="aligncenter" src='https://tbfungeek.github.io/2016/07/07/Android-%E8%BF%9B%E9%98%B6%E4%B9%8BJNI-%E5%BC%80%E5%8F%91-%E4%B8%80/1.png' width="400" />
+<!-- <img class="aligncenter" src='https://tbfungeek.github.io/2016/07/07/Android-%E8%BF%9B%E9%98%B6%E4%B9%8BJNI-%E5%BC%80%E5%8F%91-%E4%B8%80/1.png' width="400" /> -->
+
+![JNI](./assets/JNI.png)
 
 在有些情况下我们需要引入 JNI
 
@@ -133,7 +137,6 @@ Framework 层主要提供应用程序所需要的 API。在这一层里，`Zygot
 ### APP 层
 
 当系统里面的`zygote`进程运行之后，后续启动新应用，就相当于开启一个新的进程；而 Android 为了实现资源共用和更快的启动速度，子进程都是通过`zygote`进程 fork 出来的。所以说，除了`init`进程 fork 出来的第一个进程`zygote`，其他应用进程都是`zygote`的子进程
-
 
 <!-- :::caution NDK与JNI
 

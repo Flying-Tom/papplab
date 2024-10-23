@@ -2,6 +2,7 @@
 sidebar_position: 3
 ---
 import ReactPlayer from 'react-player'
+import AmapVid from './assets/amap.mp4'
 
 # Frida Hook
 
@@ -11,6 +12,7 @@ import ReactPlayer from 'react-player'
 - [frida-all-in-one](https://github.com/hookmaster/frida-all-in-one)
 
 一些工具或脚本集
+
 - [frida-snippets](https://github.com/iddoeldor/frida-snippets)
 - [fridaUiTools](https://github.com/dqzg12300/fridaUiTools)
 - $\cdots$
@@ -18,6 +20,7 @@ import ReactPlayer from 'react-player'
 ## 示例: 修改高德地图的定位信息
 
 `amaploc.js`
+
 ```javascript
 Java.perform(() => {
     console.log("Script loaded successfully ");
@@ -40,6 +43,7 @@ Java.perform(() => {
 ```
 
 `script.py`
+
 ```python
 import time
 import frida
@@ -63,4 +67,4 @@ script.load()
 input()
 ```
 
-<ReactPlayer playing controls url='/vid/amap.mp4' />
+<ReactPlayer playing controls url={AmapVid} />

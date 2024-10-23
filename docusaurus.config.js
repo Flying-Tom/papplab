@@ -9,6 +9,7 @@ import rehypeKatex from 'rehype-katex';
 
 const config = {
   title: 'Papp Lab',
+  favicon: 'img/favicon.ico',
   url: 'https://flying-tom.github.io',
   baseUrl: '/papplab/',
   organizationName: 'Flying-Tom',
